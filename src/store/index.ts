@@ -1,12 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { Element, Style } from "./options";
+import { SVGElement, Style } from "./options";
 import { createRandomCode } from "@/util";
 
 Vue.use(Vuex);
 
 interface State {
-  allElement: Element[];
+  allElement: SVGElement[];
   currentStyle: Style;
 }
 
@@ -20,7 +20,7 @@ export default new Vuex.Store<State>({
     },
   },
   mutations: {
-    addElement(state, ele: Element) {
+    addElement(state, ele: SVGElement) {
       ele = JSON.parse(JSON.stringify(ele));
       ele.id = createRandomCode();
       state.allElement.push(ele);

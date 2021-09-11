@@ -1,4 +1,4 @@
-export interface Element {
+export interface SVGElement {
   id: string;
   path?: string;
   fill: string;

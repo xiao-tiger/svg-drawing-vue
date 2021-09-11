@@ -16,7 +16,16 @@ import ToolBar from "./components/tool-bar/index.vue";
     ToolBar,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  mounted(): void {
+    document.addEventListener("contextmenu", () => {
+      if (window.event) {
+        window.event.returnValue = false;
+      }
+      return false;
+    });
+  }
+}
 </script>
 
 <style lang="scss">

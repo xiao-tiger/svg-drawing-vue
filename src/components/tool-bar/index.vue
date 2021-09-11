@@ -1,6 +1,6 @@
 <template>
   <div class="m-tool-bar">
-    <div class="color-picker"></div>
+    <color-picker />
     <div class="pen-size">
       <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -29,10 +29,12 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import FormPen from "./components/form-pen.vue";
+import ColorPicker from "./components/color-picker.vue";
 
 @Component({
   components: {
     FormPen,
+    ColorPicker,
   },
 })
 export default class ToolBar extends Vue {}
@@ -53,15 +55,7 @@ export default class ToolBar extends Vue {}
   background: white;
   border-radius: 0 8px 8px 0;
   filter: drop-shadow(0 1px 3px #3c40434d) drop-shadow(0 4px 8px #3c404326);
-  .color-picker {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: black;
-    border: 1px solid #0000001e;
-    cursor: pointer;
-    margin: 10px 0;
-  }
+
   .pen-size {
     width: 40px;
     height: 44px;
