@@ -1,6 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import CreatePath from '../create-path/index.vue';
-import { Element } from '@/store/options'
+import { Element, Style } from '@/store/options'
 
 @Component({
   components: {
@@ -9,12 +9,13 @@ import { Element } from '@/store/options'
 })
 export default class CanvasWrap extends Vue {
 
-  start = { x: 0, y: 0 }
-
-  move = { x: 0, y: 0 }
 
   // 正在绘画，一个标识，用于你是否走 mousemove 事件
   drawing = false
+
+  get currentStyle(): Style {
+    return this.$store.state.currentStyle
+  }
 
   element = {
     path: '',
@@ -28,11 +29,9 @@ export default class CanvasWrap extends Vue {
   }
 
   handleMousedown(e: MouseEvent) {
-    this.start = {
-      x: e.clientX,
-      y: e.clientY
-    }
     this.element.path = `M${e.clientX} ${e.clientY} `
+    this.element.stroke = this.currentStyle.stroke
+    this.element.strokeWidth = this.currentStyle.strokeWidth
     this.drawing = true
     const svgDom = document.querySelector('#svg') as HTMLElement
   }
@@ -42,10 +41,6 @@ export default class CanvasWrap extends Vue {
 
     console.log(e, 'move')
 
-    this.move = { 
-      x: e.clientX,
-      y: e.clientY
-    }
     this.element.path += `L${e.clientX} ${e.clientY} `
   }
 
@@ -55,8 +50,6 @@ export default class CanvasWrap extends Vue {
 
     this.$store.commit('addElement', this.element)
 
-    this.start = { x: 0, y: 0 }
-    this.move = { x: 0, y: 0 }
   }
 
   render() {

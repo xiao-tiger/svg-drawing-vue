@@ -5,3 +5,9 @@ export interface Element {
   stroke: string;
   strokeWidth: number;
 }
+
+export interface Style {
+  fill: string;
+  strokeWidth: number;
+  stroke: string;
+}
