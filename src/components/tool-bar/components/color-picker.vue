@@ -118,11 +118,11 @@ export default class ColorPicker extends Vue {
   }
 
   mounted(): void {
-    document.addEventListener("click", this.handleClick, true);
+    document.addEventListener("mousedown", this.handleClick, true);
   }
 
   beforeDestroy(): void {
-    document.removeEventListener("click", this.handleClick, true);
+    document.removeEventListener("mousedown", this.handleClick, true);
   }
 }
 </script>

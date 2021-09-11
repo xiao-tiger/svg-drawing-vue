@@ -25,6 +25,9 @@ export default new Vuex.Store<State>({
       ele.id = createRandomCode();
       state.allElement.push(ele);
     },
+    setCurrentStyle(state, { stroke }) {
+      state.currentStyle.stroke = stroke;
+    },
   },
   actions: {},
   modules: {},

@@ -1,6 +1,6 @@
 <template>
   <div class="m-tool-bar">
-    <color-picker v-model="value" />
+    <color-picker :value="value" @change="changeColor" />
     <div class="pen-size">
       <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -39,6 +39,11 @@ import ColorPicker from "./components/color-picker.vue";
 })
 export default class ToolBar extends Vue {
   value = "#000000";
+
+  changeColor(value: string): void {
+    this.value = value;
+    this.$store.commit("setCurrentStyle", { stroke: value });
+  }
 }
 </script>
 
