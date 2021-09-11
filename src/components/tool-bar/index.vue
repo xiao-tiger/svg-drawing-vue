@@ -1,6 +1,6 @@
 <template>
   <div class="m-tool-bar">
-    <color-picker />
+    <color-picker v-model="value" />
     <div class="pen-size">
       <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -37,7 +37,9 @@ import ColorPicker from "./components/color-picker.vue";
     ColorPicker,
   },
 })
-export default class ToolBar extends Vue {}
+export default class ToolBar extends Vue {
+  value = "#000000";
+}
 </script>
 
 <style lang="scss">
