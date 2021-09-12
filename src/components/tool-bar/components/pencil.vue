@@ -1,6 +1,6 @@
 <template>
   <!-- 铅笔 -->
-  <div class="pencil pen active">
+  <div class="pencil pen active" data-type="pencil">
     <svg
       id="pencil-svg"
       class="tool-button"

@@ -1,6 +1,6 @@
 <template>
   <!-- 橡皮擦 -->
-  <div class="eraser pen">
+  <div class="eraser pen" data-type="eraser">
     <svg
       id="eraser-svg"
       class="tool-button"

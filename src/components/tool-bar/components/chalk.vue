@@ -1,6 +1,6 @@
 <template>
   <!-- 粉笔 -->
-  <div class="chalk pen">
+  <div class="chalk pen" data-type="chalk">
     <svg
       id="chalk-svg"
       class="tool-button"

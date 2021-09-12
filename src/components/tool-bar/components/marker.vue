@@ -1,6 +1,6 @@
 <template>
   <!-- 记号笔 -->
-  <div class="marker pen">
+  <div class="marker pen" data-type="marker">
     <svg
       id="marker-svg"
       class="tool-button"

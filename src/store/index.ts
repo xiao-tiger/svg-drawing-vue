@@ -8,11 +8,13 @@ Vue.use(Vuex);
 interface State {
   allElement: SVGElement[];
   currentStyle: Style;
+  currentPen: "pencil" | "marker" | "inkpen" | "eraser" | "chalk";
 }
 
 export default new Vuex.Store<State>({
   state: {
     allElement: [],
+    currentPen: "pencil",
     currentStyle: {
       fill: "transparent",
       strokeWidth: 1,
@@ -26,8 +28,13 @@ export default new Vuex.Store<State>({
       state.allElement.push(ele);
     },
     setCurrentStyle(state, { stroke, strokeWidth }) {
-      stroke && (state.currentStyle.stroke = stroke);
+      if (stroke && state.currentPen !== "eraser") {
+        state.currentStyle.stroke = stroke;
+      }
       strokeWidth && (state.currentStyle.strokeWidth = strokeWidth);
+    },
+    setCurrentPen(state, value) {
+      state.currentPen = value;
     },
   },
   actions: {},

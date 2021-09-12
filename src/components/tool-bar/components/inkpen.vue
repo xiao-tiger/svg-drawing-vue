@@ -1,6 +1,6 @@
 <template>
   <!-- 钢笔 -->
-  <div class="inkpen pen">
+  <div class="inkpen pen" data-type="inkpen">
     <svg
       id="inkpen-svg"
       class="tool-button"

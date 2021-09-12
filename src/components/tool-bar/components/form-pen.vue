@@ -33,8 +33,16 @@ export default class FormPen extends Vue {
       [...formDom.children].forEach((e: Element): void => {
         e.classList.remove("active");
       });
-      const penDom = target.closest(".pen");
+      const penDom = target.closest(".pen") as HTMLElement;
       penDom?.classList.add("active");
+
+      const { type } = penDom?.dataset;
+      if (type) {
+        // 橡皮擦：暂时的实现就是用画板的背景色去覆盖😄
+        type === "eraser" &&
+          this.$store.commit("setCurrentStyle", { stroke: "#fafafa" });
+        this.$store.commit("setCurrentPen", type);
+      }
     }
   }
 }
