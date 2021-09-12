@@ -4,6 +4,8 @@
     :fill="element.fill"
     :stroke="element.stroke"
     :stroke-width="element.strokeWidth"
+    stroke-linecap="round"
+    stroke-linejoin="round"
   ></path>
 </template>
 
