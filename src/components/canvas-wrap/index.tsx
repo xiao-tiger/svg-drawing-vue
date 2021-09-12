@@ -1,26 +1,35 @@
 import { Component, Vue } from "vue-property-decorator";
 import CreatePath from "../create-path/index.vue";
+import EraserPath from "../eraser-path/index.vue";
 import { SVGElement, Style } from "@/store/options";
+import { getEditorName } from "@/util"
 
 @Component({
   components: {
     CreatePath,
+    EraserPath
   },
 })
 export default class CanvasWrap extends Vue {
   // 正在绘画，一个标识，用于你是否走 mousemove 事件
   drawing = false;
 
-  get currentStyle(): Style {
-    return this.$store.state.currentStyle;
-  }
-
-  element = {
+  element: SVGElement = {
+    id: "",
+    type: "",
     path: "",
     fill: "transparent",
     stroke: "pink",
     strokeWidth: 2,
   };
+
+  get currentStyle(): Style {
+    return this.$store.state.currentStyle;
+  }
+
+  get currentPen() {
+    return this.$store.state.currentPen
+  }
 
   get allElement(): SVGElement[] {
     return this.$store.state.allElement;
@@ -29,8 +38,14 @@ export default class CanvasWrap extends Vue {
   handleMousedown(e: MouseEvent): void {
     // 只有鼠标左键可以画画
     if (e.buttons !== 1) return;
+    this.element.type = this.currentPen;
     this.element.path = `M${e.clientX} ${e.clientY} `;
-    this.element.stroke = this.currentStyle.stroke;
+    // TODO: 目前橡皮擦的做法是让path的描边为画布的背景色，这就达到隐藏效果了😄
+    if (this.currentPen !== 'eraser') {
+      this.element.stroke = this.currentStyle.stroke;
+    } else {
+      this.element.stroke = "#fafafa";
+    }
     this.element.strokeWidth = this.currentStyle.strokeWidth;
     this.drawing = true;
   }
@@ -47,7 +62,7 @@ export default class CanvasWrap extends Vue {
     this.$store.commit("addElement", this.element);
   }
 
-  render() {
+  render(h: Vue.CreateElement) {
     return (
       <svg
         id="svg"
@@ -60,10 +75,20 @@ export default class CanvasWrap extends Vue {
           return false;
         }}
       >
+        {/* 展示所有已经绘制完成的形状 */}
         {this.allElement.map((item: SVGElement) => {
           return <create-path element={item} key={item.id} />;
         })}
-        <create-path element={this.element} />
+
+        {/* 画笔 */}
+        {
+          this.drawing && <create-path element={this.element} />
+            // h(getEditorName(this.currentPen), {
+            //   props: {
+            //     element: this.element
+            //   }
+            // })
+        }
       </svg>
     );
   }

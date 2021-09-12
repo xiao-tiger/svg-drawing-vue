@@ -1,6 +1,6 @@
 export interface SVGElement {
   id: string;
-  type?: string; // 铅笔 钢笔
+  type: string; // 铅笔 钢笔
   path?: string;
   fill: string;
   stroke: string;

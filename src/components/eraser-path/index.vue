@@ -1,9 +1,9 @@
 <template>
   <path
     :d="element.path"
-    :fill="element.fill"
-    :stroke="element.stroke"
     :stroke-width="element.strokeWidth"
+    fill="transparent"
+    stroke="#fafafa"
     stroke-linecap="round"
     stroke-linejoin="round"
   ></path>

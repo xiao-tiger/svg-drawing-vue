@@ -12,3 +12,17 @@ export function createRandomCode(len = 11): string {
   }
   return ret;
 }
+
+export type editorName = "pencil" | "marker" | "inkpen" | "eraser" | "chalk";
+
+export function getEditorName(value: editorName): string {
+  const component = {
+    pencil: "create-path",
+    marker: "create-path",
+    inkpen: "create-path",
+    eraser: "eraser-path",
+    chalk: "create-path",
+  };
+
+  return component[value];
+}

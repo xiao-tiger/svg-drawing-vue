@@ -1,14 +1,15 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { SVGElement, Style } from "./options";
-import { createRandomCode } from "@/util";
+import { createRandomCode, editorName } from "@/util";
 
 Vue.use(Vuex);
 
 interface State {
   allElement: SVGElement[];
   currentStyle: Style;
-  currentPen: "pencil" | "marker" | "inkpen" | "eraser" | "chalk";
+  currentPen: editorName;
+  // "pencil" | "marker" | "inkpen" | "eraser" | "chalk";
 }
 
 export default new Vuex.Store<State>({
@@ -28,9 +29,7 @@ export default new Vuex.Store<State>({
       state.allElement.push(ele);
     },
     setCurrentStyle(state, { stroke, strokeWidth }) {
-      if (stroke && state.currentPen !== "eraser") {
-        state.currentStyle.stroke = stroke;
-      }
+      stroke && (state.currentStyle.stroke = stroke);
       strokeWidth && (state.currentStyle.strokeWidth = strokeWidth);
     },
     setCurrentPen(state, value) {
