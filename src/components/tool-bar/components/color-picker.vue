@@ -14,7 +14,9 @@
           </p>
           <div
             class="line"
-            :style="{ transform: `translateX(${currentFeature * 100}%)` }"
+            :style="{
+              transform: `translateX(${currentFeature * 100}%)`,
+            }"
           ></div>
         </header>
         <!-- 调色板 -->
@@ -214,7 +216,7 @@ export default class ColorPicker extends Vue {
           border: 1px solid #e8eaed;
 
           &.active {
-            transform: scale(1.5);
+            transform: scale(1.5) translateZ(0);
           }
         }
       }
