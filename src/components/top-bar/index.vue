@@ -65,11 +65,13 @@ export default class TopBar extends Vue {
   position: fixed;
   width: 100%;
   top: 0;
+  height: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   .center {
     display: flex;
+    margin-top: 48px;
     .undo-box,
     .rodo-box {
       width: 48px;
