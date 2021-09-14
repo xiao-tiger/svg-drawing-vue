@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <top-bar />
     <canvas-wrap />
     <tool-bar />
   </div>
@@ -9,11 +10,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import CanvasWrap from "./components/canvas-wrap/index";
 import ToolBar from "./components/tool-bar/index.vue";
+import TopBar from "./components/top-bar/index.vue";
 
 @Component({
   components: {
     CanvasWrap,
     ToolBar,
+    TopBar,
   },
 })
 export default class App extends Vue {

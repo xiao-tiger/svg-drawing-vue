@@ -26,3 +26,11 @@ export function getEditorName(value: editorName): string {
 
   return component[value];
 }
+
+// 目前这个 demo 级别的项目够用了
+export function deepcopy<T>(obj: T): T {
+  if (typeof obj === "object" && obj !== null) {
+    return JSON.parse(JSON.stringify(obj));
+  }
+  return obj;
+}

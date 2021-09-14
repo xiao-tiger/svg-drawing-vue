@@ -60,6 +60,8 @@ export default class CanvasWrap extends Vue {
     this.drawing = false;
 
     this.$store.commit("addElement", this.element);
+    // 增加快照 方便 undo
+    this.$store.commit("recordSnapshot", this.element);
   }
 
   render(h: Vue.CreateElement) {
